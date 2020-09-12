@@ -14,3 +14,6 @@ class Star(Sprite):
     self.y += 5
     self.rect.y = self.y
 
+    def draw_star(self):
+      pygame.draw.image(self.screen,self.star)
+

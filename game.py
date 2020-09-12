@@ -1,5 +1,5 @@
 import sys
-
+from star import Star
 import pygame
 from settings import Settings
 from ship import Ship
@@ -10,11 +10,13 @@ class game:
     self.screen=pygame.display.set_mode((self.settings.width,self.settings.height))
     pygame.display.set_caption('Aliens!')
     self.player = Ship(self)
+    self.stars = pygame.sprite.Group()
   def run(self):
     while True:
       self.check()
       self.update_screen()
       self.player.update()
+      self.stars.update
   def check(self):
     for event in pygame.event.get():
       if event.type == pygame.QUIT:
@@ -31,10 +33,14 @@ class game:
           self.player.right = False
         if event.key == pygame.K_LEFT:
           self.player.left = False
+
   def update_screen(self):
     self.screen.fill(self.settings.bg_color)
     self.player.show()
     pygame.display.flip() 
+  
+  
+
 if __name__ =='__main__':
   ai=game()
   ai.run()
