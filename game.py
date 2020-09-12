@@ -11,28 +11,39 @@ class game:
     pygame.display.set_caption('Aliens!')
     self.player = Ship(self)
     self.stars = pygame.sprite.Group()
+
   def run(self):
     while True:
       self.check()
       self.update_screen()
       self.player.update()
-      self.stars.update
+      self.stars.update()
+
+  def keydown(self, event):
+    if event.key == pygame.K_RIGHT:
+      self.player.right=True
+    if event.key == pygame.K_LEFT:
+      self.player.left=True
+    elif event.key == pygame.K_q:
+      exit()
+
+  def keyup(self, event):
+    if event.key == pygame.K_RIGHT:
+      self.player.right = False
+    if event.key == pygame.K_LEFT:
+      self.player.left = False
+
   def check(self):
     for event in pygame.event.get():
       if event.type == pygame.QUIT:
         exit()
       elif event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_RIGHT:
-            self.player.right=True
-        if event.key == pygame.K_LEFT:
-            self.player.left=True
-        elif event.key == pygame.K_q:
-          exit()
+        self.keydown(event)
       elif event.type == pygame.KEYUP:
-        if event.key == pygame.K_RIGHT:
-          self.player.right = False
-        if event.key == pygame.K_LEFT:
-          self.player.left = False
+        self.keyup(event)
+  def star(self):
+    draw_star()
+  
 
   def update_screen(self):
     self.screen.fill(self.settings.bg_color)
@@ -43,4 +54,5 @@ class game:
 
 if __name__ =='__main__':
   ai=game()
+  star()
   ai.run()
