@@ -3,7 +3,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
-class game:
+class Game:
   def __init__(self):
     pygame.init()
     self.settings=Settings()
@@ -26,6 +26,8 @@ class game:
       self.player.left=True
     elif event.key == pygame.K_q:
       exit()
+    elif event.key == pygame.K_SPACE:
+      self.fire_bullet()
 
   def keyup(self, event):
     if event.key == pygame.K_RIGHT:
@@ -56,5 +58,5 @@ class game:
   
 
 if __name__ =='__main__':
-  ai=game()
+  ai=Game()
   ai.run()
