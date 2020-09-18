@@ -1,4 +1,5 @@
 import sys
+import time
 import pygame
 from settings import Settings
 from ship import Ship
@@ -18,6 +19,11 @@ class Game:
       self.update_screen()
       self.player.update()
       self.bullets.update()
+
+      for bullet in self.bullets.copy():
+        if bullet.rect.top <= 0:
+          time.sleep(0.9)
+          self.bullets.remove(bullet)
 
   def keydown(self, event):
     if event.key == pygame.K_RIGHT:
