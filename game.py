@@ -22,7 +22,7 @@ class Game:
 
       for bullet in self.bullets.copy():
         if bullet.rect.top <= 0:
-          time.sleep(0.9)
+          time.sleep(0.05)
           self.bullets.remove(bullet)
 
   def keydown(self, event):
