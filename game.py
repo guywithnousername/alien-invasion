@@ -48,13 +48,12 @@ class Game:
       elif event.type == pygame.KEYUP:
         self.keyup(event)
   
-
   def update_screen(self):
     self.screen.fill(self.settings.bg_color)
     self.player.show()
-    pygame.display.flip() 
     for bullet in self.bullets.sprites():
       bullet.bullet()
+    pygame.display.flip()
   
 
 if __name__ =='__main__':
