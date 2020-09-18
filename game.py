@@ -18,7 +18,7 @@ class Game:
       self.check()
       self.update_screen()
       self.player.update()
-      self.bullets.update()
+      self.update_bullets()
 
       for bullet in self.bullets.copy():
         if bullet.rect.top <= 0:
@@ -42,8 +42,9 @@ class Game:
       self.player.left = False
   
   def fire_bullet(self):
-    new_bullet= Bullet(self)
-    self.bullets.add(new_bullet)
+    if len(self.bullets) < self.settings.most_bullets:
+      new_bullet= Bullet(self)
+      self.bullets.add(new_bullet)
 
   def check(self):
     for event in pygame.event.get():
@@ -61,6 +62,8 @@ class Game:
       bullet.bullet()
     pygame.display.flip()
   
+  def update_bullets(self):
+    self.bullets.update()
 
 if __name__ =='__main__':
   ai=Game()

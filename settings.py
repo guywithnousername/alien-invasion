@@ -1,3 +1,4 @@
+import random
 class Settings:
   def __init__(self):
     self.width=1000
@@ -8,3 +9,5 @@ class Settings:
     self.bullet_width = 15
     self.bullet_height = 15
     self.bullet_color = (60,60,60)
+    choices = (1,2,3)
+    self.most_bullets = random.choice(choices)
