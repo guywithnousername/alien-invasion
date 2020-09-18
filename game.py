@@ -1,23 +1,20 @@
 import sys
-from star import Star
 import pygame
 from settings import Settings
 from ship import Ship
 class game:
   def __init__(self):
-    pygame.init()
+    pygame.__init__()
     self.settings=Settings()
     self.screen=pygame.display.set_mode((self.settings.width,self.settings.height))
     pygame.display.set_caption('Aliens!')
     self.player = Ship(self)
-    self.stars = pygame.sprite.Group()
 
   def run(self):
     while True:
       self.check()
       self.update_screen()
       self.player.update()
-      self.stars.update()
 
   def keydown(self, event):
     if event.key == pygame.K_RIGHT:
@@ -41,8 +38,6 @@ class game:
         self.keydown(event)
       elif event.type == pygame.KEYUP:
         self.keyup(event)
-  def star(self):
-    draw_star()
   
 
   def update_screen(self):
