@@ -54,7 +54,7 @@ class Game:
     self.player.show()
     pygame.display.flip() 
     for bullet in self.bullets.sprites():
-      bullet.draw_bullet()
+      bullet.bullet()
   
 
 if __name__ =='__main__':
