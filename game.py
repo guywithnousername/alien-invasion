@@ -2,6 +2,7 @@ import sys
 import pygame
 from settings import Settings
 from ship import Ship
+from bullet import Bullet
 class game:
   def __init__(self):
     pygame.init()
@@ -9,12 +10,14 @@ class game:
     self.screen=pygame.display.set_mode((self.settings.width,self.settings.height))
     pygame.display.set_caption('Aliens!')
     self.player = Ship(self)
+    self.bullets = pygame.sprite.Group()
 
   def run(self):
     while True:
       self.check()
       self.update_screen()
       self.player.update()
+      self.bullets.update()
 
   def keydown(self, event):
     if event.key == pygame.K_RIGHT:
@@ -29,6 +32,10 @@ class game:
       self.player.right = False
     if event.key == pygame.K_LEFT:
       self.player.left = False
+  
+  def fire_bullet(self):
+    new_bullet= Bullet(self)
+    self.bullets.add(new_bullet)
 
   def check(self):
     for event in pygame.event.get():
@@ -44,7 +51,8 @@ class game:
     self.screen.fill(self.settings.bg_color)
     self.player.show()
     pygame.display.flip() 
-  
+    for bullet in self.bullets.sprites():
+      bullet.draw_bullet()
   
 
 if __name__ =='__main__':
