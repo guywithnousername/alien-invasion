@@ -4,7 +4,7 @@ from settings import Settings
 from ship import Ship
 class game:
   def __init__(self):
-    pygame.__init__()
+    pygame.init()
     self.settings=Settings()
     self.screen=pygame.display.set_mode((self.settings.width,self.settings.height))
     pygame.display.set_caption('Aliens!')
@@ -49,5 +49,4 @@ class game:
 
 if __name__ =='__main__':
   ai=game()
-  star()
   ai.run()
