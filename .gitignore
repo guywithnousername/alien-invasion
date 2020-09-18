@@ -1,6 +1,4 @@
 .DS_Store
-.game.pyc
-..ship.bmp.swp
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

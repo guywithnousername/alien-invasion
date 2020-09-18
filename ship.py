@@ -4,7 +4,7 @@ class Ship:
   def __init__(self,aigame):
     self.screen=aigame.screen
     self.screen_rect = aigame.screen.get_rect()
-    self.image=pygame.image.load('ship.bmp')
+    self.image=pygame.image.load('images/rocket.bmp')
     self.rect=self.image.get_rect()
     self.rect.midbottom = self.screen_rect.midbottom
     self.left=False
