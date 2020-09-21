@@ -64,8 +64,8 @@ class Game:
     self.player.show()
     for bullet in self.bullets.sprites():
       bullet.bullet()
-    pygame.display.flip()
     self.aliens.draw(self.screen)
+    pygame.display.flip()
   
   def update_bullets(self):
     self.bullets.update()
