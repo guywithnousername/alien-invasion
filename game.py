@@ -71,8 +71,26 @@ class Game:
     self.bullets.update()
 
   def create_aliens(self):
+    alien1 = Alien(self)
+    alien_width, alien_height = alien1.rect.size
+    available_width_x = self.settings.width - (2 * alien_width)
+    number_aliens_x = available_width_x // (2 * alien_width)
+
+    ship_height = self.ship.rect.height
+    available_width_y = (self.settings.height - (3 * alien_height) - ship_height)
+    number_rows = available_width_y // (2 * alien_height)
+    for rowNumber in range(number_rows):
+      for alienNumber in range(number_aliens_x):
+        self.make_alien(alien_Number,rowNumber)
+      
+  def make_alien(self,alien_Number,row_number):
     alien = Alien(self)
+    alien_width,alien_height = alien.rect.size
+    alien.x = alien_width + 2 * alien_width * alien_Number
+    alien.rect.x = alien.x
+    alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
     self.aliens.add(alien)
+
 if __name__ =='__main__':
   ai=Game()
   ai.run()
