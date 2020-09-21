@@ -69,6 +69,7 @@ class Game:
   
   def update_bullets(self):
     self.bullets.update()
+    collisions = pygame.sprite.groupcollide(self.bullets,self.aliens,True,True)
 
   def create_aliens(self):
     alien1 = Alien(self)
