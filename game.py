@@ -4,6 +4,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
+from alien import Alien
 class Game:
   def __init__(self):
     pygame.init()
@@ -12,6 +13,9 @@ class Game:
     pygame.display.set_caption('Aliens!')
     self.player = Ship(self)
     self.bullets = pygame.sprite.Group()
+    self.aliens= pygame.sprite.Group()
+
+    self.create_aliens()
 
   def run(self):
     while True:
@@ -61,10 +65,14 @@ class Game:
     for bullet in self.bullets.sprites():
       bullet.bullet()
     pygame.display.flip()
+    self.aliens.draw(self.screen)
   
   def update_bullets(self):
     self.bullets.update()
 
+  def create_aliens(self):
+    alien = Alien(self)
+    self.aliens.add(alien)
 if __name__ =='__main__':
   ai=Game()
   ai.run()
