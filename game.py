@@ -14,6 +14,7 @@ class Game:
     self.player = Ship(self)
     self.bullets = pygame.sprite.Group()
     self.aliens= pygame.sprite.Group()
+    self.score=0
 
     self.create_aliens()
 
@@ -69,7 +70,12 @@ class Game:
   
   def update_bullets(self):
     self.bullets.update()
+    number_aliens = len(self.aliens)
     collisions = pygame.sprite.groupcollide(self.bullets,self.aliens,True,True)
+    number_aliens2 = len(self.aliens)
+    if number_aliens2 < number_aliens:
+      self.score += number_aliens - number_aliens2
+      print(self.score)
 
   def create_aliens(self):
     alien1 = Alien(self)
