@@ -76,12 +76,12 @@ class Game:
     available_width_x = self.settings.width - (2 * alien_width)
     number_aliens_x = available_width_x // (2 * alien_width)
 
-    ship_height = self.ship.rect.height
+    ship_height = self.player.rect.height
     available_width_y = (self.settings.height - (3 * alien_height) - ship_height)
     number_rows = available_width_y // (2 * alien_height)
     for rowNumber in range(number_rows):
       for alienNumber in range(number_aliens_x):
-        self.make_alien(alien_Number,rowNumber)
+        self.make_alien(alienNumber,rowNumber)
       
   def make_alien(self,alien_Number,row_number):
     alien = Alien(self)
