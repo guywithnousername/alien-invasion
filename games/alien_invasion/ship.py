@@ -1,8 +1,10 @@
+'''the file used to manage the aliens'''
 import pygame as pg
 from settings import Settings
 import os
 class Ship:
   def __init__(self,aigame):
+    #set all of the variables for the ship
     self.screen=aigame.screen
     self.screen_rect = aigame.screen.get_rect()
     self.image= pg.image.load('games/images/rocketShip.bmp')
@@ -13,9 +15,11 @@ class Ship:
     self.sett = aigame.settings
 
   def show(self):
+    #show the ship on the screen
     self.screen.blit(self.image,self.rect)
     
   def update(self):
+    #check movement
     if self.right and self.rect.right < self.screen_rect.right:
       self.rect.x += int(self.sett.speed)
     if self.left and self.rect.left > 0:
