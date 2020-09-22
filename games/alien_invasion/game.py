@@ -6,7 +6,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
-from alien import Alien
+from alien import blueAlien as Alien
 class Game:
   def __init__(self):
     #make the screen

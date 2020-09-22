@@ -1,11 +1,14 @@
+import pathlib
 import pygame
 from pygame.sprite import Sprite
+
 class Alien(Sprite):
 
-  def __init__(self,aigame):
+  def __init__(self, aigame):
     super().__init__()
+    path = pathlib.Path(__file__).parent.absolute()
     self.screen= aigame.screen
-    self.image = pygame.image.load('games/images/alien.bmp')
+    self.image = pygame.image.load(str(path) + '/images/alien.bmp')
     self.rect = self.image.get_rect()
     self.setting = aigame.settings
     self.rect.x = self.rect.width
@@ -22,3 +25,10 @@ class Alien(Sprite):
   def update(self):
     self.x += (self.setting.alien_speed * self.setting.direction)
     self.rect.x = self.x
+
+class blueAlien(Alien):
+
+  def __init__(self, aigame):
+    super().__init__(aigame)
+    path = pathlib.Path(__file__).parent.absolute()
+    self.image = pygame.image.load(str(path) + '/images/blue_alien.bmp')

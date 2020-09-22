@@ -1,13 +1,15 @@
 '''the file used to manage the aliens'''
+import pathlib
 import pygame as pg
 from settings import Settings
 import os
 class Ship:
   def __init__(self,aigame):
     #set all of the variables for the ship
+    path = pathlib.Path(__file__).parent.absolute()
     self.screen=aigame.screen
     self.screen_rect = aigame.screen.get_rect()
-    self.image= pg.image.load('games/images/rocketShip.bmp')
+    self.image= pg.image.load(str(path) + '/images/rocketShip.bmp')
     self.rect=self.image.get_rect()
     self.rect.midbottom = self.screen_rect.midbottom
     self.left=False
