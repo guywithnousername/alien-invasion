@@ -7,14 +7,14 @@ class Bullet(Sprite):
     self.screen = ai_game.screen
     self.settings = ai_game.settings
     self.color = self.settings.bullet_color
-    self.rect = pygame.Rect(0,0,self.settings.bullet_width,self.settings.bullet_height)
-    self.rect.midtop= ai_game.player.rect.midtop
+    self.rect = pygame.Rect(0,0,self.settings.bullet_width,self.settings.bullet_height) #set a rect (doesn't draw anything)
+    self.rect.midtop= ai_game.player.rect.midtop #go to player
 
     self.y = float(self.rect.y)
   
-  def update(self):
+  def update(self): #make the bullet go upwards
     self.y -= self.settings.bullet_speed
     self.rect.y = self.y
 
-  def bullet(self):
+  def bullet(self): #draw the bullet
     pygame.draw.rect(self.screen,self.color,self.rect)
