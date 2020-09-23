@@ -15,6 +15,9 @@ class Settings:
     self.bullet_color = (0, 255, 242)
     self.most_bullets = 3
     #alien settings
+    #yellow alien settings
     self.alien_speed = 1.5
     self.drop_speed = 1
     self.direction = 1 #1 represents right, 2 represents left
+    #blue alien settings
+    self.blue_alien_speed = 3.0

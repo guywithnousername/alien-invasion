@@ -32,7 +32,13 @@ class blueAlien(Alien):
     super().__init__(aigame)
     path = pathlib.Path(__file__).parent.absolute()
     self.image = pygame.image.load(str(path) + '/images/blue_alien.bmp')
-    self.rect.x = self.player.rect.x
-    
+    self.y = float(self.rect.y)
+
   def update(self):
-    pass
+    self.y += self.setting.blue_alien_speed
+    self.rect.y = self.y
+  
+  def check_edges(self):
+    screen_rect = self.screen.get_rect()
+    if self.y <= screen_rect.bottom:
+      return True

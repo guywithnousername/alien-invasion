@@ -6,17 +6,22 @@ import pygame
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
-from alien import blueAlien as Alien
+from alien import Alien , blueAlien
+from wall import Wall
 class Game:
   def __init__(self):
     #make the screen
     pygame.init()
     self.settings=Settings()
-    self.screen=pygame.display.set_mode((self.settings.width,self.settings.height))
+    self.screen=pygame.display.set_mode((0,0),pygame.FULLSCREEN)
+    self.settings.width = self.screen.get_rect().width
+    self.settings.height = self.screen.get_rect().height
     pygame.display.set_caption('Aliens!')
     #create the other sprites' instances
     #also add groups of sprites
     self.player = Ship(self)
+    self.wall = Wall(self)
+    self.wall.draw
     self.bullets = pygame.sprite.Group()
     self.aliens= pygame.sprite.Group()
     self.create_aliens()
@@ -45,7 +50,7 @@ class Game:
       self.player.right=True
     if event.key == pygame.K_LEFT:
       self.player.left=True
-    elif event.key == pygame.K_q:
+    elif event.key == pygame.K_q or event.key == pygame.K_w:
       exit()
     elif event.key == pygame.K_SPACE:
       self.fire_bullet()
