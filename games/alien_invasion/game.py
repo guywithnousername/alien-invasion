@@ -95,7 +95,13 @@ class Game:
   def update_bullets(self):
     self.bullets.update() #make all the bullets update
     number_aliens = len(self.aliens)# get the number of aliens
-    collisions = pygame.sprite.groupcollide(self.bullets,self.aliens,True,True) # make bulllets who collide with aliens disappear
+    for bullet in self.bullets.sprites():
+      # make bulllets who collide with aliens disappear
+      alien = pygame.sprite.spritecollideany(bullet,self.aliens)
+      if alien is not None:
+        self.aliens.remove(alien)
+        self.bullets.remove(bullet)
+        break
     number_aliens2 = len(self.aliens)# get the number of aliens after some are destroyed by bullets
     if number_aliens2 < number_aliens: # if a alien is destroyed,change the score
       self.score += number_aliens - number_aliens2
