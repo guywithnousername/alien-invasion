@@ -2,6 +2,7 @@
 import sys
 import time
 import pygame
+from time import sleep
 #import all the other files 
 from settings import Settings
 from ship import Ship
@@ -20,11 +21,11 @@ class Game:
     #create the other sprites' instances
     #also add groups of sprites
     self.player = Ship(self)
-    self.wall = Wall(self)
-    self.wall.draw
     self.bullets = pygame.sprite.Group()
     self.aliens= pygame.sprite.Group()
+    self.walls = pygame.sprite.Group()
     self.create_aliens()
+    self.make_walls()
     #set some variables
     self.score=0
     
@@ -34,7 +35,7 @@ class Game:
     #run the game 
     while True:
       self.check()
-      self.update_screen()
+      
       self.player.update()
       self.update_bullets()
       self.update_aliens()
@@ -43,6 +44,7 @@ class Game:
         if bullet.rect.top <= 0:
           time.sleep(0.05)
           self.bullets.remove(bullet)
+      self.update_screen()
 
   def keydown(self, event):
     #check when a key is down
@@ -51,6 +53,13 @@ class Game:
     if event.key == pygame.K_LEFT:
       self.player.left=True
     elif event.key == pygame.K_q or event.key == pygame.K_w:
+      self.aliens.empty()
+      sleep(1)
+      self.walls.empty()
+      sleep(1)
+      self.bullets.empty()
+      self.screen.fill(self.settings.bg_color)
+      sleep(1)
       exit()
     elif event.key == pygame.K_SPACE:
       self.fire_bullet()
@@ -74,6 +83,13 @@ class Game:
     for event in pygame.event.get():
       #check if the window's red button is pressed
       if event.type == pygame.QUIT:
+        self.aliens.empty()
+        sleep(1)
+        self.walls.empty()
+        sleep(1)
+        self.bullets.empty()
+        self.screen.fill(self.settings.bg_color)
+        sleep(1)
         exit()
       #check keydown events
       elif event.type == pygame.KEYDOWN:
@@ -89,6 +105,7 @@ class Game:
     for bullet in self.bullets.sprites():
       bullet.bullet()
     self.aliens.draw(self.screen)
+    self.draw_walls()
     #show the screen
     pygame.display.flip()
   
@@ -148,6 +165,24 @@ class Game:
     for alien in self.aliens.sprites():
       alien.rect.y += self.settings.drop_speed
     self.settings.direction *= -1
+
+  def draw_walls(self):
+    for w in self.walls.sprites():
+      w.update()
+
+  def make_walls(self):
+    self.test_wall = Wall(self,0)
+    avail_width_x = self.settings.width - self.test_wall.wall_width
+    number_walls_x = avail_width_x // self.test_wall.wall_width
+    for x in range(number_walls_x):
+      self.make_wall(x)
+
+  def make_wall(self,X):
+    x = (self.test_wall.wall_width + 2 * X)
+    wall = Wall(self,x)
+    self.walls.add(wall)
+
+
 
   
 if __name__ =='__main__':
