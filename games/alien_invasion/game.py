@@ -1,5 +1,6 @@
 '''the main file, which does everything'''
 import sys
+import pathlib
 import time
 import pygame
 from time import sleep
@@ -26,6 +27,9 @@ class Game:
     self.walls = pygame.sprite.Group()
     self.create_aliens()
     self.make_walls()
+    #define a sound
+    path = pathlib.Path(__file__).parent.absolute()
+    self.shoot = pygame.mixer.Sound(str(path) + '/images/shoot.ogg')
     #set some variables
     self.score=0
     
@@ -75,6 +79,7 @@ class Game:
     '''fire a bullet'''
     if len(self.bullets) < self.settings.most_bullets: #check if the number of bullets is less than the limit
       #add a bullet
+      self.shoot.play()
       new_bullet= Bullet(self)
       self.bullets.add(new_bullet)
 
