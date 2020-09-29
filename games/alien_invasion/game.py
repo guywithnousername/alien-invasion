@@ -17,8 +17,8 @@ class Game:
     pygame.init()
     self.settings=Settings()
     self.screen=pygame.display.set_mode((0,0),pygame.FULLSCREEN)
-    self.settings.width = self.screen.get_rect().width
-    self.settings.height = self.screen.get_rect().height
+    self.settings.actualw = self.screen.get_rect().width
+    self.settings.actualh = self.screen.get_rect().height
     pygame.display.set_caption('Aliens!')
     #create the other sprites' instances
     #also add groups of sprites
@@ -186,7 +186,7 @@ class Game:
 
   def make_walls(self):
     self.test_wall = Wall(self,0)
-    avail_width_x = self.settings.width - (2 * self.test_wall.wall_width)
+    avail_width_x = self.settings.actualw - (2 * self.test_wall.wall_width)
     number_walls_x = avail_width_x // self.test_wall.wall_width
     for x in range(number_walls_x):
       self.make_wall(x)
