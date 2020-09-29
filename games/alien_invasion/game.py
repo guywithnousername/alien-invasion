@@ -32,6 +32,9 @@ class Game:
     if self.settings.sound_on:
       path = pathlib.Path(__file__).parent.absolute()
       self.shoot = pygame.mixer.Sound(str(path) + '/shoot.ogg')
+      self.shoot.set_volume(0.3)
+      self.explode = pygame.mixer.Sound(str(path) + '/explosion.ogg')
+      self.explode.set_volume(0.45)
     #set some variables
     self.score=0
     
@@ -114,6 +117,7 @@ class Game:
       alien = pygame.sprite.spritecollideany(bullet,self.aliens)
       if alien is not None:
         self.aliens.remove(alien)
+        self.explode.play()
         self.bullets.remove(bullet)
         break
       wall = pygame.sprite.spritecollideany(bullet,self.walls)
