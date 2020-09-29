@@ -143,6 +143,8 @@ class Game:
     for rowNumber in range(number_rows):
       for alienNumber in range(number_aliens_x):
         self.make_alien(alienNumber,rowNumber)
+    for a in self.aliens:
+      a.randomize()
       
   def make_alien(self,alien_Number,row_number):
     '''make a single alien'''

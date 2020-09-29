@@ -1,5 +1,6 @@
 import pathlib
 import pygame
+import random
 from pygame.sprite import Sprite
 
 class Alien(Sprite):
@@ -24,6 +25,13 @@ class Alien(Sprite):
 
   def update(self): #move the alien
     self.x += (self.setting.alien_speed * self.setting.direction)
+    self.rect.x = self.x
+
+  def randomize(self):
+    randomx= random.randint(-20,20)
+    randomy= random.randint(-10,10)
+    self.x += randomx
+    self.rect.y += randomy
     self.rect.x = self.x
 
 class blueAlien(Alien):
