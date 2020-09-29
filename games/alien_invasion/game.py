@@ -3,6 +3,7 @@ import sys
 import pathlib
 import time
 import pygame
+import random
 from time import sleep
 #import all the other files 
 from settings import Settings
@@ -28,8 +29,9 @@ class Game:
     self.create_aliens()
     self.make_walls()
     #define a sound
-    path = pathlib.Path(__file__).parent.absolute()
-    self.shoot = pygame.mixer.Sound(str(path) + '/images/shoot.ogg')
+    if self.settings.sound_on:
+      path = pathlib.Path(__file__).parent.absolute()
+      self.shoot = pygame.mixer.Sound(str(path) + '/shoot.ogg')
     #set some variables
     self.score=0
     
@@ -57,14 +59,7 @@ class Game:
     if event.key == pygame.K_LEFT:
       self.player.left=True
     elif event.key == pygame.K_q or event.key == pygame.K_w:
-      self.aliens.empty()
-      sleep(1)
-      self.walls.empty()
-      sleep(1)
-      self.bullets.empty()
-      self.screen.fill(self.settings.bg_color)
-      sleep(1)
-      exit()
+      raise SystemError
     elif event.key == pygame.K_SPACE:
       self.fire_bullet()
 
@@ -79,7 +74,8 @@ class Game:
     '''fire a bullet'''
     if len(self.bullets) < self.settings.most_bullets: #check if the number of bullets is less than the limit
       #add a bullet
-      self.shoot.play()
+      if self.settings.sound_on:
+        self.shoot.play()
       new_bullet= Bullet(self)
       self.bullets.add(new_bullet)
 
@@ -88,20 +84,16 @@ class Game:
     for event in pygame.event.get():
       #check if the window's red button is pressed
       if event.type == pygame.QUIT:
-        self.aliens.empty()
-        sleep(1)
-        self.walls.empty()
-        sleep(1)
-        self.bullets.empty()
-        self.screen.fill(self.settings.bg_color)
-        sleep(1)
-        exit()
+        raise SystemError
       #check keydown events
       elif event.type == pygame.KEYDOWN:
         self.keydown(event)
        #check keyup events
       elif event.type == pygame.KEYUP:
         self.keyup(event)
+    if len(self.walls ) == 0:
+      print('you lose!')
+      raise SystemError
   
   def update_screen(self):
     #change the screen so characters move
@@ -122,6 +114,11 @@ class Game:
       alien = pygame.sprite.spritecollideany(bullet,self.aliens)
       if alien is not None:
         self.aliens.remove(alien)
+        self.bullets.remove(bullet)
+        break
+      wall = pygame.sprite.spritecollideany(bullet,self.walls)
+      if wall is not None:
+        self.walls.remove(wall)
         self.bullets.remove(bullet)
         break
     number_aliens2 = len(self.aliens)# get the number of aliens after some are destroyed by bullets
@@ -157,7 +154,14 @@ class Game:
     self.aliens.update()
 
     self.check_fleet_edges()
-
+    for a in self.aliens:
+      wall = pygame.sprite.spritecollideany(a,self.walls)
+      if wall is not None:
+        self.walls.remove(wall)
+        choice = (0,1)
+        random.choice(choice)
+        if choice == 1:
+          self.aliens.remove(a)  
   def check_fleet_edges(self):
     '''see if the aliens have touched the edge'''
     for alien in self.aliens.sprites():
