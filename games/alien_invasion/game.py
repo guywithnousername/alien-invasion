@@ -128,7 +128,7 @@ class Game:
     number_aliens2 = len(self.aliens)# get the number of aliens after some are destroyed by bullets
     if number_aliens2 < number_aliens: # if a alien is destroyed,change the score
       self.score += number_aliens - number_aliens2
-      #print(self.score)
+      print(self.score)
 
   def create_aliens(self):
     '''make all the aliens'''
@@ -173,7 +173,6 @@ class Game:
     for alien in self.aliens.sprites():
       if alien.check_edges():
         self.change_direction()
-        print(len(self.walls))
         break
 
   def change_direction(self):
