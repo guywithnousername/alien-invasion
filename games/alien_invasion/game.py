@@ -83,7 +83,7 @@ class Game:
       self.bullets.add(new_bullet)
 
   def check(self):
-    '''check keys'''
+    '''check events'''
     for event in pygame.event.get():
       #check if the window's red button is pressed
       if event.type == pygame.QUIT:
@@ -94,7 +94,7 @@ class Game:
        #check keyup events
       elif event.type == pygame.KEYUP:
         self.keyup(event)
-    if len(self.walls ) == 0:
+    if len(self.walls) < 1:
       print('you lose!')
       raise SystemError
   
@@ -128,7 +128,7 @@ class Game:
     number_aliens2 = len(self.aliens)# get the number of aliens after some are destroyed by bullets
     if number_aliens2 < number_aliens: # if a alien is destroyed,change the score
       self.score += number_aliens - number_aliens2
-      print(self.score)
+      #print(self.score)
 
   def create_aliens(self):
     '''make all the aliens'''
@@ -171,6 +171,7 @@ class Game:
     for alien in self.aliens.sprites():
       if alien.check_edges():
         self.change_direction()
+        print(len(self.walls))
         break
 
   def change_direction(self):
@@ -185,13 +186,13 @@ class Game:
 
   def make_walls(self):
     self.test_wall = Wall(self,0)
-    avail_width_x = self.settings.width - self.test_wall.wall_width
+    avail_width_x = self.settings.width - (2 * self.test_wall.wall_width)
     number_walls_x = avail_width_x // self.test_wall.wall_width
     for x in range(number_walls_x):
       self.make_wall(x)
 
   def make_wall(self,X):
-    x = (self.test_wall.wall_width + 2 * X)
+    x = (self.test_wall.wall_width + 2 * X * self.test_wall.wall_width)
     wall = Wall(self,x)
     self.walls.add(wall)
 
