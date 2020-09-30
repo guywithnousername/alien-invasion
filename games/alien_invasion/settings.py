@@ -3,7 +3,7 @@ import random
 class Settings:
   def __init__(self):
     #screen settings
-    self.width=1055
+    self.width=1075
     self.height=700
     self.actualw=1000
     self.actualh=700

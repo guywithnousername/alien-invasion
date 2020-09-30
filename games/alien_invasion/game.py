@@ -114,7 +114,7 @@ class Game:
       # make bulllets who collide with aliens disappear
       alien = pygame.sprite.spritecollideany(bullet,self.aliens)
       if alien is not None:
-        self.explode.play()
+        self.explode.play()    
         self.aliens.remove(alien)
         self.bullets.remove(bullet)
         break
@@ -197,7 +197,9 @@ class Game:
 
 
 
-  
-if __name__ =='__main__':
-  ai=Game() #initialize
-  ai.run() #run
+def __main__():
+  if __name__ =='__main__':
+    ai=Game() #initialize
+    ai.run() #run
+
+__main__()
