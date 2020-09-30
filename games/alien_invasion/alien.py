@@ -14,7 +14,7 @@ class Alien(Sprite):
     self.setting = aigame.settings
     self.rect.x = self.rect.width
     self.rect.y = self.rect.height
-
+    self.change = random.randint(-5,5)
     self.x = float(self.rect.x)
 
   def check_edges(self): #check if touching edge
@@ -24,7 +24,7 @@ class Alien(Sprite):
 
 
   def update(self): #move the alien
-    self.x += (self.setting.alien_speed * self.setting.direction)
+    self.x += ((self.setting.alien_speed  + self.change) * self.setting.direction)
     self.rect.x = self.x
 
   def randomize(self):
