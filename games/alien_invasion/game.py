@@ -4,6 +4,7 @@ import pathlib
 import time
 import pygame
 import random
+import json
 #import all the other files 
 from settings import Settings
 from ship import Ship
@@ -29,13 +30,15 @@ class Game:
     self.make_walls()
     #define a sound
     if self.settings.sound_on:
-      path = pathlib.Path(__file__).parent.absolute()
-      self.shoot = pygame.mixer.Sound(str(path) + '/shoot.ogg')
+      self.path = pathlib.Path(__file__).parent.absolute()
+      self.shoot = pygame.mixer.Sound(str(self.path) + '/shoot.ogg')
       self.shoot.set_volume(self.settings.volume)
-      self.explode = pygame.mixer.Sound(str(path) + '/glassBreaking.ogg')
+      self.explode = pygame.mixer.Sound(str(self.path) + '/glassBreaking.ogg')
       self.explode.set_volume(self.settings.volume - 0.4)
     #set some variables
     self.score=0
+    self.filename = '/scores.json'
+
 
   def run(self):
     '''mainloop'''
@@ -60,6 +63,9 @@ class Game:
     if event.key == pygame.K_LEFT:
       self.player.left=True
     elif event.key == pygame.K_q or event.key == pygame.K_w:
+      with open((str(self.path) + self.filename),'a') as u:
+        string = f'   ' + str(self.score)
+        json.dump(string,u)
       raise SystemError
     elif event.key == pygame.K_SPACE:
       self.fire_bullet()
@@ -85,6 +91,8 @@ class Game:
     for event in pygame.event.get():
       #check if the window's red button is pressed
       if event.type == pygame.QUIT:
+        with open((str(self.path) + self.filename),'a') as u:
+          json.dump('    ' + str(self.score),u)
         raise SystemError
       #check keydown events
       elif event.type == pygame.KEYDOWN:
@@ -92,10 +100,7 @@ class Game:
        #check keyup events
       elif event.type == pygame.KEYUP:
         self.keyup(event)
-    if len(self.walls) < 1:
-      print('you lose!')
-      raise SystemError
-  
+
   def update_screen(self):
     #change the screen so characters move
     self.screen.fill(self.settings.bg_color)
