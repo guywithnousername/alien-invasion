@@ -32,8 +32,8 @@ class Game:
       path = pathlib.Path(__file__).parent.absolute()
       self.shoot = pygame.mixer.Sound(str(path) + '/shoot.ogg')
       self.shoot.set_volume(self.settings.volume)
-      self.explode = pygame.mixer.Sound(str(path) + '/explosion.ogg')
-      self.explode.set_volume(self.settings.volume)
+      self.explode = pygame.mixer.Sound(str(path) + '/glassBreaking.ogg')
+      self.explode.set_volume(self.settings.volume - 0.4)
     #set some variables
     self.score=0
     
