@@ -9,7 +9,7 @@ from settings import Settings
 from ship import Ship
 from bullet import Bullet
 from alien import Alien , blueAlien
-from wall import Wall
+from other import Wall
 class Game:
   def __init__(self):
     #make the screen
@@ -36,7 +36,6 @@ class Game:
       self.explode.set_volume(self.settings.volume - 0.4)
     #set some variables
     self.score=0
-    
 
   def run(self):
     '''mainloop'''
@@ -115,8 +114,8 @@ class Game:
       # make bulllets who collide with aliens disappear
       alien = pygame.sprite.spritecollideany(bullet,self.aliens)
       if alien is not None:
-        self.aliens.remove(alien)
         self.explode.play()
+        self.aliens.remove(alien)
         self.bullets.remove(bullet)
         break
       wall = pygame.sprite.spritecollideany(bullet,self.walls)
