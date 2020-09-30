@@ -4,7 +4,6 @@ import pathlib
 import time
 import pygame
 import random
-from time import sleep
 #import all the other files 
 from settings import Settings
 from ship import Ship
