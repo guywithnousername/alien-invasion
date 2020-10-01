@@ -12,6 +12,7 @@ from alien import Alien , blueAlien
 from other import Wall
 class Game:
   def __init__(self):
+    self.name = input('enter your name:')
     #make the screen
     pygame.init()
     self.settings=Settings()
@@ -62,7 +63,7 @@ class Game:
     if event.key == pygame.K_LEFT:
       self.player.left=True
     elif event.key == pygame.K_q or event.key == pygame.K_w:
-      string = f'\tscore:' + str(self.score) + '.\n'
+      string = f'\t' + self.name + ':' + str(self.score) + '.\n'
       with open((str(self.path) + self.scores), "a") as f:
         f.write(string)
       raise SystemError

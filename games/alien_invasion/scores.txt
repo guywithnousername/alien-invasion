@@ -1,6 +1,8 @@
 the scores for the game are:
-    score:7.
-    score:11.
-    score:6.
-    score:72.
-	score:5.
+    Minglang:7.
+    Minglang:11.
+    Minglang:6.
+    Minglang:72.
+	Minglang:5.
+	Minglang:0.
+	minglang:7.
