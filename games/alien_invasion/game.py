@@ -4,7 +4,6 @@ import pathlib
 import time
 import pygame
 import random
-import json
 #import all the other files 
 from settings import Settings
 from ship import Ship
@@ -37,8 +36,8 @@ class Game:
       self.explode.set_volume(self.settings.volume - 0.4)
     #set some variables
     self.score=0
-    self.filename = '/scores.json'
-
+    #get text file
+    self.scores = open('scores.txt','a')
 
   def run(self):
     '''mainloop'''
@@ -63,9 +62,8 @@ class Game:
     if event.key == pygame.K_LEFT:
       self.player.left=True
     elif event.key == pygame.K_q or event.key == pygame.K_w:
-      with open((str(self.path) + self.filename),'a') as u:
-        string = f'   ' + str(self.score)
-        json.dump(string,u)
+      string = f'score:' + str(self.score) + './n'
+      self.scores.write(string)
       raise SystemError
     elif event.key == pygame.K_SPACE:
       self.fire_bullet()
@@ -91,8 +89,6 @@ class Game:
     for event in pygame.event.get():
       #check if the window's red button is pressed
       if event.type == pygame.QUIT:
-        with open((str(self.path) + self.filename),'a') as u:
-          json.dump('    ' + str(self.score),u)
         raise SystemError
       #check keydown events
       elif event.type == pygame.KEYDOWN:
@@ -131,7 +127,6 @@ class Game:
     number_aliens2 = len(self.aliens)# get the number of aliens after some are destroyed by bullets
     if number_aliens2 < number_aliens: # if a alien is destroyed,change the score
       self.score += number_aliens - number_aliens2
-      print(self.score)
 
   def create_aliens(self):
     '''make all the aliens'''
