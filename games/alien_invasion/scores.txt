@@ -1,5 +1,6 @@
 the scores for the game are:
     score:7.
     score:11.
-    core:6.
+    score:6.
     score:72.
+	score:5.
