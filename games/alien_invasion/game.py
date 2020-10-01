@@ -37,7 +37,7 @@ class Game:
     #set some variables
     self.score=0
     #get text file
-    self.scores = open('scores.txt','a')
+    self.scores = '/scores.txt'
 
   def run(self):
     '''mainloop'''
@@ -62,8 +62,9 @@ class Game:
     if event.key == pygame.K_LEFT:
       self.player.left=True
     elif event.key == pygame.K_q or event.key == pygame.K_w:
-      string = f'score:' + str(self.score) + './n'
-      self.scores.write(string)
+      string = f'\tscore:' + str(self.score) + '.\n'
+      with open((str(self.path) + self.scores), "a") as f:
+        f.write(string)
       raise SystemError
     elif event.key == pygame.K_SPACE:
       self.fire_bullet()
