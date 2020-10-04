@@ -1,4 +1,4 @@
-'''the main file, which does everything'''
+'''the main file, which does all the things.'''
 import sys
 import pathlib
 import time
@@ -12,10 +12,10 @@ from alien import Alien , blueAlien
 from other import Wall
 class Game:
   def __init__(self):
+    self.settings=Settings()
     self.name = input('enter your name:')
     #make the screen
     pygame.init()
-    self.settings=Settings()
     self.screen=pygame.display.set_mode((0,0),pygame.FULLSCREEN)
     self.settings.actualw = self.screen.get_rect().width
     self.settings.actualh = self.screen.get_rect().height
@@ -28,26 +28,25 @@ class Game:
     self.walls = pygame.sprite.Group()
     self.create_aliens()
     self.make_walls()
+    self.path = pathlib.Path(__file__).parent.absolute()
     #define a sound
     if self.settings.sound_on:
-      self.path = pathlib.Path(__file__).parent.absolute()
       self.shoot = pygame.mixer.Sound(str(self.path) + '/shoot.ogg')
       self.shoot.set_volume(self.settings.volume)
       self.explode = pygame.mixer.Sound(str(self.path) + '/glassBreaking.ogg')
       self.explode.set_volume(self.settings.volume - 0.4)
     #set some variables
     self.score=0
-    #get text file
+    #get text file to write scores to.
     self.scores = '/scores.txt'
 
   def run(self):
     '''mainloop'''
     #run the game 
     while True:
-      self.check()
-      
-      self.player.update()
-      self.update_bullets()
+      self.check()#check for keys and events
+      self.player.update()#move the ship
+      self.update_bullets()#move the bullets
       self.update_aliens()
       #check if bullets are touching the top of the screen
       for bullet in self.bullets.copy():
@@ -66,7 +65,7 @@ class Game:
       string = f'\t' + self.name + ':' + str(self.score) + '.\n'
       with open((str(self.path) + self.scores), "a") as f:
         f.write(string)
-      raise SystemError
+      exit()
     elif event.key == pygame.K_SPACE:
       self.fire_bullet()
 
@@ -91,7 +90,7 @@ class Game:
     for event in pygame.event.get():
       #check if the window's red button is pressed
       if event.type == pygame.QUIT:
-        raise SystemError
+        exit()
       #check keydown events
       elif event.type == pygame.KEYDOWN:
         self.keydown(event)
@@ -117,7 +116,8 @@ class Game:
       # make bulllets who collide with aliens disappear
       alien = pygame.sprite.spritecollideany(bullet,self.aliens)
       if alien is not None:
-        self.explode.play()    
+        if self.settings.sound_on:
+          self.explode.play()    
         self.aliens.remove(alien)
         self.bullets.remove(bullet)
         break
