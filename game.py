@@ -13,13 +13,15 @@ from other import Wall
 class Game:
   def __init__(self):
     self.settings=Settings()
-    self.name = input('enter your name:')
+    prompt = 'You are playing Alien Invasion'
+    prompt += 'Enter your name:'
+    self.name = input(prompt)
     #make the screen
     pygame.init()
     self.screen=pygame.display.set_mode((0,0),pygame.FULLSCREEN)
     self.settings.actualw = self.screen.get_rect().width
     self.settings.actualh = self.screen.get_rect().height
-    pygame.display.set_caption('Aliens!')
+    pygame.display.set_caption('Aliens Invasion')
     #create the other sprites' instances
     #also add groups of sprites
     self.player = Ship(self)
