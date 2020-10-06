@@ -1,7 +1,7 @@
 # alien-invasion
 
 This project is a game about a rocket ship that shoots bullets. The entire game is written in
-python.
+python.(this game requires pygame and pip to be installed)
 This project is spread across multiple files, with each serving a different purpose.
 
 # game.py
