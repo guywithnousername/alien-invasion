@@ -11,3 +11,13 @@ class Wall(Sprite):
 
     def update(self):
         pygame.draw.rect(self.screen, self.color, self.rect)
+
+class AlienBullet(Sprite):
+    def __init__(self,aigame,x,y)
+        self.rect = pygame.Rect(x,y,10,10)
+        self.setting = aigame.settings
+        self.screen = aigame.screen
+
+    def update(self):
+	pygame.draw.rect(self.screen,(0,255,0),self.rect)
+	self.rect.bottom += 1
