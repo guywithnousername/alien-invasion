@@ -14,7 +14,7 @@ class Game:
   def __init__(self):
     self.settings=Settings()
     prompt = 'You are playing Alien Invasion'
-    prompt += 'Enter your name:'
+    prompt += '\nEnter your name:'
     self.name = input(prompt)
     #make the screen
     pygame.init()
