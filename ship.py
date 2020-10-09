@@ -9,7 +9,7 @@ class Ship:
     path = pathlib.Path(__file__).parent.absolute()
     self.screen=aigame.screen
     self.screen_rect = aigame.screen.get_rect()
-    self.image= pg.image.load(str(path) + '/images/rocketShip.bmp')
+    self.image= pg.image.load(str(path) + '/images/rocketShip.png')
     self.rect=self.image.get_rect()
     self.rect.midbottom = self.screen_rect.midbottom
     self.left=False
