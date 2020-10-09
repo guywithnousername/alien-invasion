@@ -7,7 +7,7 @@ class Settings:
     self.height=700
     self.actualw=1000
     self.actualh=700
-    self.bg_color = (55, 53, 143)
+    self.bg_color = (104,207,248)
     #ship settings
     self.speed = 3.0
     #bullet settings
