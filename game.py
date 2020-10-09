@@ -199,9 +199,6 @@ class Game:
     wall = Wall(self,x)
     self.walls.add(wall)
 
-def __main__():
-  if __name__ =='__main__':
-    ai=Game() #initialize
-    ai.run() #run
-
-__main__()
+if __name__ =='__main__':
+  ai=Game() #initialize
+  ai.run() #run
