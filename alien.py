@@ -8,7 +8,7 @@ class Alien(Sprite):
   def __init__(self, aigame):
     super().__init__()
     path = pathlib.Path(__file__).parent.absolute() # get file path
-    self.image = pygame.image.load(str(path) + '/images/alien.bmp') #get location of the alien image
+    self.image = pygame.image.load(str(path) + '/images/alien.png') #get location of the alien image
     self.screen= aigame.screen
     self.rect = self.image.get_rect()
     self.setting = aigame.settings
