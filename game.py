@@ -13,8 +13,11 @@ from other import Wall
 class Game:
   def __init__(self):
     self.settings=Settings()
-    prompt = 'You are playing Alien Invasion'
-    prompt += '\nEnter your name:'
+    prompt =''
+    for i in range(0,50):
+      prompt += '\n'
+    prompt += 'You are playing Alien Invasion'
+    prompt += '\n\tEnter your name:'
     self.name = input(prompt)
     #make the screen
     pygame.init()
