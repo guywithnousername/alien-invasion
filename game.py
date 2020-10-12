@@ -121,6 +121,9 @@ class Game:
       # make bulllets who collide with aliens disappear
       alien = pygame.sprite.spritecollideany(bullet,self.aliens)
       if alien is not None:
+        alien.change_image()
+        alien.update()
+        self.aliens.draw(self.screen)
         if self.settings.sound_on:
           self.explode.play()    
         self.aliens.remove(alien)
@@ -172,7 +175,7 @@ class Game:
         choice = (0,1)
         random.choice(choice)
         if choice == 1:
-          self.aliens.remove(a)  
+          self.aliens.remove(a)
   def check_fleet_edges(self):
     '''see if the aliens have touched the edge'''
     for alien in self.aliens.sprites():
@@ -201,3 +204,7 @@ class Game:
     x = (self.test_wall.wall_width + 2 * X * self.test_wall.wall_width)
     wall = Wall(self,x)
     self.walls.add(wall)
+
+if __name__ == '__main__':
+  ai = Game()
+  ai.run()

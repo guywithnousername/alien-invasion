@@ -1,6 +1,7 @@
 import pathlib
 import pygame
 import random
+import time
 from pygame.sprite import Sprite
 
 class Alien(Sprite):
@@ -33,6 +34,10 @@ class Alien(Sprite):
     self.x += randomx
     self.rect.y += randomy
     self.rect.x = self.x
+
+  def change_image(self):
+    path = pathlib.Path(__file__).parent.absolute() 
+    self.image = pygame.image.load(f"{str(path)}/images/explosion.png")
 
 class blueAlien(Alien):
   """
