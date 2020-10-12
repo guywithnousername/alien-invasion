@@ -7,3 +7,6 @@
 	 minglang:10.
 	minglang:2.
 	minglang:39.
+	minglang:6.
+	minglang:3.
+	minglang:5.

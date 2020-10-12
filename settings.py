@@ -1,6 +1,9 @@
 '''the file which stores all the settings for the game'''
 import random
 class Settings:
+  """
+  the class where the settings are
+  """
   def __init__(self):
     #screen settings
     self.width=1075

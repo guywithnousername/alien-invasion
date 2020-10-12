@@ -10,6 +10,7 @@ from ship import Ship
 from bullet import Bullet
 from alien import Alien , blueAlien
 from other import Wall
+from score import Score
 class Game:
   def __init__(self):
     self.settings=Settings()
@@ -44,6 +45,8 @@ class Game:
     self.score=0
     #get text file to write scores to.
     self.scores = '/scores.txt'
+    #create a instance of score
+    self.score_ = Score(self,str(self.score))
 
   def run(self):
     '''mainloop'''
@@ -110,9 +113,10 @@ class Game:
     for bullet in self.bullets.sprites():
       bullet.bullet()
     self.aliens.draw(self.screen)
+    self.score_.show(str(self.score))
     self.draw_walls()
     #show the screen
-    pygame.display.flip()
+    pygame.display.flip() 
   
   def update_bullets(self):
     self.bullets.update() #make all the bullets update
