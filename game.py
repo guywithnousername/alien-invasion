@@ -67,7 +67,7 @@ class Game:
     if event.key == pygame.K_LEFT:
       self.player.left=True
     elif event.key == pygame.K_q or event.key == pygame.K_w:
-      string = f'\t' + self.name + ':' + str(self.score) + '.\n'
+      string = f'\t{self.name}:{str(self.score)}.\n'
       with open((str(self.path) + self.scores), "a") as f:
         f.write(string)
       exit()
@@ -201,7 +201,3 @@ class Game:
     x = (self.test_wall.wall_width + 2 * X * self.test_wall.wall_width)
     wall = Wall(self,x)
     self.walls.add(wall)
-
-if __name__ =='__main__':
-  ai=Game() #initialize
-  ai.run() #run

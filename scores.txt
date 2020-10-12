@@ -2,3 +2,6 @@
 	Minglang:72.
 	minglang:8.
 	minglang:72.
+	minglang:72.
+	minglang:8.
+	 minglang:10.

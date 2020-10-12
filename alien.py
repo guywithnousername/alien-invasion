@@ -35,7 +35,9 @@ class Alien(Sprite):
     self.rect.x = self.x
 
 class blueAlien(Alien):
-
+  """
+  not used
+  """
   def __init__(self, aigame):
     super().__init__(aigame)
     path = pathlib.Path(__file__).parent.absolute()
