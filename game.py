@@ -129,8 +129,6 @@ class Game:
       if alien is not None:
         alien.change_image()
         alien.update()
-        self.update_screen()
-        time.sleep(0.2)
         self.condition = '+1'
         self.aliens.draw(self.screen)
         if self.settings.sound_on:
