@@ -8,7 +8,6 @@ class Bullet(Sprite):
     self.screen = ai_game.screen
     self.settings = ai_game.settings
     path = pathlib.Path(__file__).parent.absolute()
-    self.color = self.settings.bullet_color
     self.image = pygame.image.load(f"{str(path)}/images/bullet.png")
     self.rect = self.image.get_rect() #set a rect (doesn't draw anything)
     self.rect.midtop= ai_game.player.rect.midtop #go to player

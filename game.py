@@ -9,8 +9,7 @@ from settings import Settings
 from ship import Ship
 from bullet import Bullet
 from alien import Alien , blueAlien
-from other import Wall
-from score import Score
+from other import Wall , Score
 class Game:
   def __init__(self):
     self.settings=Settings()
