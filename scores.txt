@@ -16,3 +16,6 @@
 	minglang:45.
 	minglang:5.
 	minglang:70.
+	qiuju:39.
+	minglang:2.
+	minglang:18.
