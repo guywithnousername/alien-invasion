@@ -9,7 +9,7 @@ from settings import Settings
 from ship import Ship
 from bullet import Bullet
 from alien import Alien , blueAlien
-from other import Wall , Score
+from other import Wall , Text
 class Game:
   def __init__(self):
     self.settings=Settings()
@@ -42,10 +42,12 @@ class Game:
       self.explode.set_volume(self.settings.volume - 0.4)
     #set some variables
     self.score=0
+    self.condition = ''
     #get text file to write scores to.
     self.scores = '/scores.txt'
     #create a instance of score
-    self.score_ = Score(self,str(self.score))
+    self.score_ = Text(self,str(self.score),60)
+    self.condit = Text(self,str(self.condition),80)
 
   def run(self):
     '''mainloop'''
@@ -113,6 +115,7 @@ class Game:
       bullet.bullet()
     self.aliens.draw(self.screen)
     self.score_.show(str(self.score))
+    self.condit.show(str(self.condition))
     self.draw_walls()
     #show the screen
     pygame.display.flip() 
@@ -128,11 +131,15 @@ class Game:
         alien.update()
         self.update_screen()
         time.sleep(0.2)
+        self.condition = '+1'
         self.aliens.draw(self.screen)
         if self.settings.sound_on:
           self.explode.play()    
         self.aliens.remove(alien)
         self.bullets.remove(bullet)
+        self.update_screen()
+        time.sleep(0.2)
+        self.condition = ''
         break
       wall = pygame.sprite.spritecollideany(bullet,self.walls)
       if wall is not None:

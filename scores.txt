@@ -19,3 +19,8 @@
 	qiuju:39.
 	minglang:2.
 	minglang:18.
+	/usr/local/bin/python3 /Users/cydu/GoodPositiveKid/alien-invasion/game.py:46.
+	minglang:10.
+	minglang:2.
+	minglang:11.
+	minglang:5.
