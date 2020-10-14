@@ -22,7 +22,7 @@ class Text:
         self.font = pygame.font.Font('freesansbold.ttf',32)
         self.text = self.font.render(msg,True,(0,255,0),None)
         self.rect = self.text.get_rect()
-        self.rect.center = 1560,y
+        self.rect.center = 1500,y
 
     def show(self,msg):
         self.text = self.font.render(msg,True,(0,255,0),None)

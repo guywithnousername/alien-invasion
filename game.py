@@ -60,8 +60,11 @@ class Game:
       #check if bullets are touching the top of the screen
       for bullet in self.bullets.copy():
         if bullet.rect.top <= 0:
-          time.sleep(0.05)
+          self.condition = 'miss'
+          self.update_screen()
+          time.sleep(0.2)
           self.bullets.remove(bullet)
+          self.condition = ''
       self.update_screen()
 
   def keydown(self, event):
@@ -127,9 +130,11 @@ class Game:
       # make bulllets who collide with aliens disappear
       alien = pygame.sprite.spritecollideany(bullet,self.aliens)
       if alien is not None:
-        alien.change_image()
         alien.update()
         self.condition = '+1'
+        alien.change_image()
+        time.sleep(0.1)
+        self.update_screen()
         self.aliens.draw(self.screen)
         if self.settings.sound_on:
           self.explode.play()    
