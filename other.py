@@ -16,13 +16,13 @@ class Text:
     """
     class for showing the score
     """
-    def __init__(self,aigame,msg,y):
+    def __init__(self,aigame,msg,x,y):
         self.screen = aigame.screen
         self.screen_rect = self.screen.get_rect()
         self.font = pygame.font.Font('freesansbold.ttf',32)
         self.text = self.font.render(msg,True,(0,255,0),None)
         self.rect = self.text.get_rect()
-        self.rect.center = 1111,y
+        self.rect.center = x,y
 
     def show(self,msg):
         self.text = self.font.render(msg,True,(0,255,0),None)

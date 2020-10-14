@@ -24,7 +24,7 @@ class Game:
     self.screen=pygame.display.set_mode((0,0),pygame.FULLSCREEN)
     self.settings.actualw = self.screen.get_rect().width
     self.settings.actualh = self.screen.get_rect().height
-    pygame.display.set_caption('Aliens Invasion')
+    pygame.display.set_caption('Alien Invasion')
     #create the other sprites' instances
     #also add groups of sprites
     self.player = Ship(self)
@@ -46,8 +46,8 @@ class Game:
     #get text file to write scores to.
     self.scores = '/scores.txt'
     #create a instance of score
-    self.score_ = Text(self,str(self.score),60)
-    self.condit = Text(self,str(self.condition),80)
+    self.score_ = Text(self,str(self.score),1111,60)
+    self.condit = Text(self,str(self.condition),(self.screen.get_width() // 2),90)
 
   def run(self):
     '''mainloop'''
