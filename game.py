@@ -146,8 +146,12 @@ class Game:
         break
       wall = pygame.sprite.spritecollideany(bullet,self.walls)
       if wall is not None:
+        self.condition = 'wall broken'
+        self.update_screen()
+        time.sleep(0.2)
         self.walls.remove(wall)
         self.bullets.remove(bullet)
+        self.condition = ''
         break
     number_aliens2 = len(self.aliens)# get the number of aliens after some are destroyed by bullets
     if number_aliens2 < number_aliens: # if a alien is destroyed,change the score
@@ -186,11 +190,12 @@ class Game:
     for a in self.aliens:
       wall = pygame.sprite.spritecollideany(a,self.walls)
       if wall is not None:
+        self.condition = 'wall broken'
+        self.update_screen()
+        time.sleep(0.2)
         self.walls.remove(wall)
-        choice = (0,1)
-        random.choice(choice)
-        if choice == 1:
-          self.aliens.remove(a)
+        self.aliens.remove(a)
+        self.condition = ''
   def check_fleet_edges(self):
     '''see if the aliens have touched the edge'''
     for alien in self.aliens.sprites():
