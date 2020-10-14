@@ -190,11 +190,12 @@ class Game:
     for a in self.aliens:
       wall = pygame.sprite.spritecollideany(a,self.walls)
       if wall is not None:
-        self.condition = 'wall broken'
+        self.condition = '-1'
         self.update_screen()
         time.sleep(0.2)
         self.walls.remove(wall)
         self.aliens.remove(a)
+        self.score -= 1
         self.condition = ''
   def check_fleet_edges(self):
     '''see if the aliens have touched the edge'''
