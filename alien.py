@@ -17,6 +17,7 @@ class Alien(Sprite):
     self.rect.y = self.rect.height
     self.change = random.randint(-5,5)
     self.x = float(self.rect.x)
+    self.lose = False
 
   def check_edges(self): #check if touching edge
     screen_rect = self.screen.get_rect()
@@ -27,6 +28,11 @@ class Alien(Sprite):
   def update(self): #move the alien
     self.x += ((self.setting.alien_speed  + self.change) * self.setting.direction)
     self.rect.x = self.x
+    if self.rect.bottom >= self.screen.get_height():
+      self.lose = True
+      print('you lose!')
+      pygame.quit()
+
 
   def randomize(self):
     randomx= random.randint(-20,20)

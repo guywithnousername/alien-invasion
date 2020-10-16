@@ -52,13 +52,13 @@ class Game:
   def run(self):
     '''mainloop'''
     #run the game 
-    while True:
+    true = True
+    while true:
       self.check()#check for keys and events
       self.player.update()#move the ship
       self.update_bullets()#move the bullets
       self.update_aliens()
-      #check if bullets are touching the top of the screen
-      for bullet in self.bullets.copy():
+      for bullet in self.bullets.copy():#check if bullets are touching the top of the screen
         if bullet.rect.top <= 0:
           self.condition = 'miss'
           self.update_screen()
@@ -66,6 +66,9 @@ class Game:
           self.bullets.remove(bullet)
           self.condition = ''
       self.update_screen()
+      for alien in self.aliens.sprites():
+        if alien.lose == True:
+          true = False
 
   def keydown(self, event):
     #check when a key is down
@@ -109,6 +112,8 @@ class Game:
        #check keyup events
       elif event.type == pygame.KEYUP:
         self.keyup(event)
+    if pygame.sprite.spritecollide(self.player,self.aliens,False):
+      raise KeyboardInterrupt('you lost!')
 
   def update_screen(self):
     #change the screen so characters move

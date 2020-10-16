@@ -19,7 +19,7 @@ class Settings:
     #alien settings
     #normal alien settings
     self.alien_speed = 2.5
-    self.drop_speed = 3
+    self.drop_speed = 3.1
     self.direction = 1 #1 represents right, 2 represents left
     #blue alien settings
     self.blue_alien_speed = 3.0 #not added
