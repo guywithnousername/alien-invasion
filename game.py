@@ -31,7 +31,7 @@ class Game:
     self.bullets = pygame.sprite.Group()
     self.aliens= pygame.sprite.Group()
     self.walls = pygame.sprite.Group()
-    self.create_aliens()
+    #self.create_aliens()
     self.make_walls()
     self.path = pathlib.Path(__file__).parent.absolute()
     #define a sound
@@ -119,6 +119,7 @@ class Game:
       self.update_screen()
       time.sleep(1)
       self.condition = ''
+      self.player.go_up(self)
       self.create_aliens()
       self.make_walls()
   def update_screen(self):

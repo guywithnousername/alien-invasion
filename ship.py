@@ -27,4 +27,9 @@ class Ship:
     if self.left and self.rect.left > 0:
       self.rect.x -= int(self.sett.speed)
       
-   
+  def go_up(self,aigame):
+    self.rect.left = self.screen_rect.width // 2
+    while self.rect.top > 0:
+      self.rect.top -= 3
+      aigame.update_screen()
+    self.rect.bottom  = self.screen_rect.height
