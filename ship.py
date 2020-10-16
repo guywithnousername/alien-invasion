@@ -2,7 +2,6 @@
 import pathlib
 import pygame as pg
 from settings import Settings
-import os
 class Ship:
   def __init__(self,aigame):
     #set all of the variables for the ship
