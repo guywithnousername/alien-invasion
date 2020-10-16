@@ -114,7 +114,13 @@ class Game:
         self.keyup(event)
     if pygame.sprite.spritecollide(self.player,self.aliens,False):
       raise KeyboardInterrupt('you lost!')
-
+    if len(self.aliens) < 1:
+      self.condition = 'you won!'
+      self.update_screen()
+      time.sleep(1)
+      self.condition = ''
+      self.create_aliens()
+      self.make_walls()
   def update_screen(self):
     #change the screen so characters move
     self.screen.fill(self.settings.bg_color)
