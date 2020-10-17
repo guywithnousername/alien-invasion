@@ -215,6 +215,7 @@ class Game:
         time.sleep(0.2)
         self.condition = ''
         self.aliens.remove(a)
+        self.score += 1
         a.change_image()
   def check_fleet_edges(self):
     '''see if the aliens have touched the edge'''
