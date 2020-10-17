@@ -13,3 +13,8 @@
 	minglang:29.
 	minglang:-6.
 	minglang:4.
+	minglang:2.
+	minglang:1.
+	minglang:0.
+	minglang:0.
+	minglang:0.

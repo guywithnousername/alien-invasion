@@ -120,6 +120,7 @@ class Game:
       time.sleep(1)
       self.condition = ''
       self.player.go_up(self)
+      self.settings.increment()
       self.create_aliens()
       self.make_walls()
   def update_screen(self):
@@ -143,14 +144,13 @@ class Game:
       alien = pygame.sprite.spritecollideany(bullet,self.aliens)
       if alien is not None:
         alien.update()
-        self.condition = '+1'
-        alien.change_image()
+        self.condition = 'hit'
         time.sleep(0.1)
         self.update_screen()
         self.aliens.draw(self.screen)
         if self.settings.sound_on:
           self.explode.play()    
-        self.aliens.remove(alien)
+        alien.decrement()
         self.bullets.remove(bullet)
         self.update_screen()
         time.sleep(0.2)
@@ -209,6 +209,13 @@ class Game:
         self.aliens.remove(a)
         self.score -= 1
         self.condition = ''
+      if a.lives < 1:
+        self.condition = '+1'
+        self.update_screen()
+        time.sleep(0.2)
+        self.condition = ''
+        self.aliens.remove(a)
+        a.change_image()
   def check_fleet_edges(self):
     '''see if the aliens have touched the edge'''
     for alien in self.aliens.sprites():

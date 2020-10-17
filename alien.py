@@ -18,6 +18,7 @@ class Alien(Sprite):
     self.change = random.randint(-5,5)
     self.x = float(self.rect.x)
     self.lose = False
+    self.lives = self.setting.most_lives
 
   def check_edges(self): #check if touching edge
     screen_rect = self.screen.get_rect()
@@ -32,6 +33,9 @@ class Alien(Sprite):
       self.lose = True
       print('you lose!')
       pygame.quit()
+      
+  def decrement(self):
+    self.lives -= 1
 
 
   def randomize(self):

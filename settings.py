@@ -20,9 +20,12 @@ class Settings:
     #normal alien settings
     self.alien_speed = 2.5
     self.drop_speed = 3.1
+    self.most_lives = 1
     self.direction = 1 #1 represents right, 2 represents left
     #blue alien settings
     self.blue_alien_speed = 3.0 #not added
     #sound settings
     self.sound_on = True
     self.volume = 0.6
+  def increment(self):
+    self.most_lives += 1
