@@ -9,9 +9,11 @@ class Alien(Sprite):
   def __init__(self, aigame):
     super().__init__()
     path = pathlib.Path(__file__).parent.absolute() # get file path
-    self.image = pygame.image.load(str(path) + '/images/alien.png') #get location of the alien image
+    self.mage = pygame.image.load(str(path) + '/images/alien.png') #get location of the alien image
+    self.rect = self.mage.get_rect()
+    self.bigger()
+    self.image = pygame.transform.scale(self.mage,self.rect.size)
     self.screen= aigame.screen
-    self.rect = self.image.get_rect()
     self.setting = aigame.settings
     self.rect.x = self.rect.width
     self.rect.y = self.rect.height
@@ -49,6 +51,9 @@ class Alien(Sprite):
     path = pathlib.Path(__file__).parent.absolute() 
     self.image = pygame.image.load(f"{str(path)}/images/explosion.png")
 
+  def bigger(self):
+    self.rect.width += 10
+    self.rect.height += 10
 class blueAlien(Alien):
   """
   not used

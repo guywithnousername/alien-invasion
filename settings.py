@@ -28,4 +28,4 @@ class Settings:
     self.sound_on = True
     self.volume = 0.6
   def increment(self):
-    self.most_lives += 1
+    self.most_lives += 2

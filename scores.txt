@@ -1,20 +1,3 @@
-	minglang:36.
-	minglang:14.
-	minglang:7.
-	minglang:2.
-	minglang:5.
-	minglang:72.
-	minglang:6.
-	minglang:4.
+		/usr/local/bin/python3 /Users/cydu/GoodPositiveKid/alien-invasion/game.py:0.
 	minglang:3.
-	minglang:16.
-	minglang:11.
-	minglang:2.
-	minglang:29.
-	minglang:-6.
-	minglang:4.
-	minglang:2.
-	minglang:1.
-	minglang:0.
-	minglang:0.
-	minglang:0.
+	minglang:7.
