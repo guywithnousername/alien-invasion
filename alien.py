@@ -52,8 +52,8 @@ class Alien(Sprite):
     self.image = pygame.image.load(f"{str(path)}/images/explosion.png")
 
   def bigger(self):
-    self.rect.width += 10
-    self.rect.height += 10
+    self.rect.width += 5
+    self.rect.height += 5
 class blueAlien(Alien):
   """
   not used
