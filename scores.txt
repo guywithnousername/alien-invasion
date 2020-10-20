@@ -1,3 +1,1 @@
-		/usr/local/bin/python3 /Users/cydu/GoodPositiveKid/alien-invasion/game.py:0.
-	minglang:3.
-	minglang:7.
+
