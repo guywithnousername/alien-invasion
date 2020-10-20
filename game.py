@@ -78,8 +78,9 @@ class Game:
       self.player.left=True
     elif event.key == pygame.K_q or event.key == pygame.K_w:
       string = f'\t{self.name}:{str(self.score)}.\n'
-      with open((str(self.path) + self.scores), "a") as f:
-        f.write(string)
+      if not self.name.lower() == 'test test':
+        with open((str(self.path) + self.scores), "a") as f:
+          f.write(string)
       exit()
     elif event.key == pygame.K_SPACE:
       self.fire_bullet()
@@ -113,6 +114,9 @@ class Game:
       elif event.type == pygame.KEYUP:
         self.keyup(event)
     if pygame.sprite.spritecollide(self.player,self.aliens,False):
+      if not self.name.lower() == 'test test':
+        with open((str(self.path) + self.scores), "a") as f:
+          f.write(string)
       raise KeyboardInterrupt('you lost!')
     if len(self.aliens) < 1:
       self.condition = 'you won!'
