@@ -12,7 +12,7 @@ class Alien(Sprite):
     self.mage = pygame.image.load(str(path) + '/images/alien.png') #get location of the alien image
     self.rect = self.mage.get_rect()
     self.bigger()
-    self.image = pygame.transform.scale(self.mage,self.rect.size)
+    self.image = pygame.transform.scale(self.mage,(self.rect.width,self.rect.height))
     self.screen= aigame.screen
     self.setting = aigame.settings
     self.rect.x = self.rect.width

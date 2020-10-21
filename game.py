@@ -84,6 +84,9 @@ class Game:
       exit()
     elif event.key == pygame.K_SPACE:
       self.fire_bullet()
+    elif event.key == pygame.K_DELETE:
+      if self.name.lower() == 'test test':
+        self.aliens.empty()
 
   def keyup(self, event):
     #check when a key is up
@@ -114,6 +117,7 @@ class Game:
       elif event.type == pygame.KEYUP:
         self.keyup(event)
     if pygame.sprite.spritecollide(self.player,self.aliens,False):
+      string = f'{self.name}:{self.score}.\n'
       if not self.name.lower() == 'test test':
         with open((str(self.path) + self.scores), "a") as f:
           f.write(string)
