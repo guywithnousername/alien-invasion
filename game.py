@@ -8,7 +8,7 @@ import random
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
-from alien import Alien , blueAlien
+from alien import Alien
 from other import Wall , Text
 class Game:
   def __init__(self):
@@ -84,7 +84,7 @@ class Game:
       exit()
     elif event.key == pygame.K_SPACE:
       self.fire_bullet()
-    elif event.key == pygame.K_DELETE:
+    if event.key == pygame.K_a:
       if self.name.lower() == 'test test':
         self.aliens.empty()
 
@@ -205,7 +205,6 @@ class Game:
   def update_aliens(self):
     '''make all the aliens move'''
     self.aliens.update()
-
     self.check_fleet_edges()
     for a in self.aliens:
       wall = pygame.sprite.spritecollideany(a,self.walls)
@@ -234,8 +233,8 @@ class Game:
 
   def change_direction(self):
     '''change the direction of the fleet'''
-    for alien in self.aliens.sprites():
-      alien.rect.y += self.settings.drop_speed
+    # for alien in self.aliens.sprites():
+      # alien.rect.y += self.settings.drop_speed
     self.settings.direction *= -1
 
   def draw_walls(self):

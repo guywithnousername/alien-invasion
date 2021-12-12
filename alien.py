@@ -13,6 +13,7 @@ class Alien(Sprite):
     self.rect = self.mage.get_rect()
     self.bigger()
     self.image = pygame.transform.scale(self.mage,(self.rect.width,self.rect.height))
+    self.rect = self.image.get_rect()
     self.screen= aigame.screen
     self.setting = aigame.settings
     self.rect.x = self.rect.width
@@ -54,21 +55,19 @@ class Alien(Sprite):
   def bigger(self):
     self.rect.width += 5
     self.rect.height += 5
-class blueAlien(Alien):
-  """
-  not used
-  """
-  def __init__(self, aigame):
+class Blue_alien(Alien):
+  def __init__(self,aigame):
     super().__init__(aigame)
+    self.mage = None
     path = pathlib.Path(__file__).parent.absolute()
-    self.image = pygame.image.load(str(path) + '/images/blue_alien.bmp')
-    self.y = float(self.rect.y)
-
+    self.image = pygame.image.load(str(path)+'/images/blue_alien.png')
+    self.rect = self.image.get_rect()
+    self.screen= aigame.screen
+    self.setting = aigame.settings
+    self.rect.x = self.rect.width
+    self.rect.y = self.rect.height
+    self.x = float(self.rect.x)    
+    self.lives = self.setting.most_lives
   def update(self):
-    self.y += self.setting.blue_alien_speed
-    self.rect.y = self.y
-  
-  def check_edges(self):
-    screen_rect = self.screen.get_rect()
-    if self.y <= screen_rect.bottom:
-      return True
+    self.x += (6 * self.setting.direction)
+    self.rect.x = self.x
