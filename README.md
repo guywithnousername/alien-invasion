@@ -4,6 +4,8 @@ This project is a game about a rocket ship that shoots bullets. The entire game 
 python.(this game requires pygame and pip to be installed)
 This project is spread across multiple files, with each serving a different purpose.
 
+This project is not going to be developed anymore.
+
 # game.py
 This is the main file which does everything. It runs the game.
 # bullet.py
